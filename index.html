@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nova AI — استوديو الذكاء الاصطناعي الاحترافي</title>
+    <meta name="description" content="Nova AI هو استوديو ذكاء اصطناعي عربي متطور للبرمجة، الكتابة، التعلم، الإبداع، وتوليد الأكواد والمشاريع.">
+    <meta name="keywords" content="Nova AI, ذكاء اصطناعي, AI Studio, برمجة, استوديو الأكواد, Gemini">
+    <meta name="author" content="Nova AI">
+    <meta name="theme-color" content="#070813">
+    <meta name="color-scheme" content="dark">
+
+    <link rel="canonical" href="https://nova-ai-one-cyan.vercel.app/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="https://i.postimg.cc/JzFwyMDB/Whats-App-Image-2026-10-05-at-9-05-23-PM.jpg">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/JzFwyMDB/Whats-App-Image-2026-10-05-at-9-05-23-PM.jpg">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase Core & Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="auth-guard.js"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nova AI",
+        "url": "https://nova-ai-one-cyan.vercel.app/",
+        "description": "استوديو ذكاء اصطناعي للبرمجة والمحادثة والإبداع.",
+        "applicationCategory": "Artificial Intelligence",
+        "operatingSystem": "Web",
+        "inLanguage": "ar"
+    }
+    </script>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         FAST LOADING SCREEN
+    ========================================================== -->
+    <div id="novaLoadingScreen">
+        <div class="nova-loader">
+            <div class="nova-loader-logo-wrap">
+                <img src="https://i.postimg.cc/JzFwyMDB/Whats-App-Image-2026-10-05-at-9-05-23-PM.jpg" alt="Nova AI Logo">
+            </div>
+
+            <div class="nova-loading-brand">
+                <span class="nova-brand-nova">Nova</span>
+                <span class="nova-brand-ai">AI</span>
+            </div>
+
+            <div class="nova-loading-subtitle">استوديو الذكاء الاصطناعي</div>
+
+            <div class="nova-progress-wrapper">
+                <div class="nova-progress-container">
+                    <div id="novaProgressBar" class="nova-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         APP MAIN CONTAINER
+    ========================================================== -->
+    <div class="app-container">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-header">
+                <div class="sidebar-header-brand">
+                    <button id="sidebarToggleBtn" class="toggle-btn" title="طي / توسيع القائمة" type="button" aria-label="طي أو توسيع القائمة">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <h2 class="logo-text">Nova <span>AI</span></h2>
+                </div>
+            </div>
+
+            <button id="newChatBtn" class="new-chat-btn" type="button">
+                <i class="fa-solid fa-plus"></i>
+                <span class="btn-text">محادثة جديدة</span>
+            </button>
+
+            <!-- Studio Navigation -->
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-nav-item active">
+                    <i class="fa-solid fa-message"></i>
+                    <span>الدردشة الذكية</span>
+                </a>
+                <a href="code-workspace.html" class="sidebar-nav-item">
+                    <i class="fa-solid fa-code"></i>
+                    <span>استوديو الأكواد</span>
+                    <span class="nav-badge">Live</span>
+                </a>
+                <a href="projects.html" class="sidebar-nav-item">
+                    <i class="fa-solid fa-folder-tree"></i>
+                    <span>المشاريع</span>
+                </a>
+                <a href="about.html" class="sidebar-nav-item">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>عن Nova</span>
+                </a>
+            </nav>
+
+            <!-- Chat History -->
+            <div class="history-section">
+                <h3 class="history-title">المحادثات الأخيرة</h3>
+                <ul class="history-list" id="historyList"></ul>
+            </div>
+
+            <!-- Profile Area -->
+            <div class="nova-profile-area">
+                <button id="novaProfileBtn" class="nova-profile-btn" type="button" aria-expanded="false" aria-haspopup="true">
+                    <div id="novaProfileAvatar" class="nova-profile-avatar">NA</div>
+                    <div class="nova-profile-info">
+                        <strong id="novaProfileName">مستخدم Nova</strong>
+                        <span id="novaProfilePlan" class="nova-profile-plan free">FREE</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-up nova-profile-arrow"></i>
+                </button>
+
+                <!-- Profile Dropdown Menu -->
+                <div id="novaProfileMenu" class="nova-profile-menu">
+                    <div class="nova-profile-head">
+                        <div id="novaMenuAvatar" class="nova-menu-avatar">NA</div>
+                        <div>
+                            <strong id="novaMenuName">مستخدم Nova</strong>
+                            <span id="novaMenuEmail" style="font-size:12px;color:var(--nova-text-muted);display:block;">—</span>
+                        </div>
+                    </div>
+
+                    <div class="nova-plan-card" style="padding:10px 12px;margin:4px 0;border-radius:12px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;">
+                            <span style="font-size:12px;color:var(--nova-text-muted);">الخطة الحالية:</span>
+                            <strong id="novaMenuPlan" style="font-size:13px;color:var(--nova-cyan);">FREE</strong>
+                        </div>
+                    </div>
+
+                    <div class="nova-menu-section-title">
+                        <i class="fa-solid fa-palette"></i>
+                        <span>المظهر (Themes)</span>
+                    </div>
+
+                    <div class="nova-theme-grid">
+                        <button class="nova-theme-option active" data-theme="nova" type="button">
+                            <span class="theme-preview theme-nova"></span>
+                            <span>Nova</span>
+                        </button>
+                        <button class="nova-theme-option" data-theme="purple" type="button">
+                            <span class="theme-preview theme-purple"></span>
+                            <span>Purple</span>
+                        </button>
+                        <button class="nova-theme-option" data-theme="emerald" type="button">
+                            <span class="theme-preview theme-emerald"></span>
+                            <span>Emerald</span>
+                        </button>
+                        <button class="nova-theme-option" data-theme="amoled" type="button">
+                            <span class="theme-preview theme-amoled"></span>
+                            <span>AMOLED</span>
+                        </button>
+                    </div>
+
+                    <div style="height:1px;background:var(--nova-border);margin:6px 0;"></div>
+
+                    <button id="novaProfileLanguage" class="nova-profile-menu-item" type="button">
+                        <i class="fa-solid fa-language"></i>
+                        <span>اللغة</span>
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <button id="novaProfileSubscriptions" class="nova-profile-menu-item" type="button">
+                        <i class="fa-solid fa-crown"></i>
+                        <span>الباقات والترقية</span>
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <button id="novaProfileSettings" class="nova-profile-menu-item" type="button">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>الإعدادات</span>
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div style="height:1px;background:var(--nova-border);margin:6px 0;"></div>
+
+                    <button id="novaLogoutBtn" class="nova-profile-menu-item nova-logout-item" type="button">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>تسجيل الخروج</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+        <main class="main-content">
+
+            <!-- Top Header -->
+            <div class="section-header">
+                <div class="header-left">
+                    <button id="mobileMenuBtn" class="mobile-menu-btn" type="button" title="فتح القائمة" aria-label="فتح القائمة">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="header-status">
+                        <span class="status-indicator" title="متصل"></span>
+                        <span class="header-title" id="currentChatTitle">الدردشة مع Nova</span>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <!-- Model Selector Pill -->
+                    <div class="model-selector-wrapper">
+                        <button type="button" class="model-selector-btn" id="modelSelectorBtn">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span id="selectedModelLabel">Nova 2.0 Flash</span>
+                            <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="model-dropdown" id="modelDropdown">
+                            <div class="model-option active" data-model="nova-2.0-flash">
+                                <i class="fa-solid fa-bolt" style="color:var(--nova-cyan)"></i>
+                                <div>
+                                    <strong>Nova 2.0 Flash</strong>
+                                    <small>فائق السرعة وخفيف للردود اليومية</small>
+                                </div>
+                            </div>
+                            <div class="model-option" data-model="nova-2.0-pro">
+                                <i class="fa-solid fa-brain" style="color:var(--nova-violet)"></i>
+                                <div>
+                                    <strong>Nova 2.0 Pro</strong>
+                                    <small>أعلى دقة، كتابة الأكواد والتفكير العميق</small>
+                                </div>
+                            </div>
+                            <div class="model-option" data-model="nova-creative">
+                                <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--nova-pink)"></i>
+                                <div>
+                                    <strong>Nova Creative</strong>
+                                    <small>الإبداع وتوليد الصور والقصص</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code Workspace Quick Link -->
+                    <a href="code-workspace.html" class="header-icon-link" title="استوديو الأكواد">
+                        <i class="fa-solid fa-code"></i>
+                    </a>
+
+                    <!-- Settings Button -->
+                    <button class="header-icon-link" id="settingsBtn" title="الإعدادات" type="button">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <section id="chat-section" class="content-section">
+
+                <!-- Chat Box -->
+                <div class="chat-box" id="chatBox">
+
+                    <!-- Welcome Screen -->
+                    <div class="nova-welcome" id="novaWelcome">
+                        <div class="nova-welcome-icon">
+                            <i class="fa-solid fa-sparkles"></i>
+                        </div>
+
+                        <h1>أهلاً بك في <span>Nova AI Studio</span> 👋</h1>
+                        <p>
+                            مساعدك الذكي المتقدم للبرمجة، تطوير المواقع، الكتابة الإبداعية، وتحليل البيانات.
+                            <br>
+                            اكتب استفسارك أو اختر من الاقتراحات السريعة بالأسفل.
+                        </p>
+
+                        <div class="quick-prompts">
+                            <button type="button" class="quick-prompt" data-prompt="اكتب لي كود تطبيق ويب حديث ومتكامل بالـ HTML وCSS وJavaScript">
+                                <i class="fa-solid fa-code"></i>
+                                <span>صمم لي تطبيق ويب متكامل</span>
+                            </button>
+
+                            <button type="button" class="quick-prompt" data-prompt="اشرح لي كيف يعمل الذكاء الاصطناعي ونماذج LLM بطريقة مبسطة مع أمثلة">
+                                <i class="fa-solid fa-brain"></i>
+                                <span>كيف يعمل الذكاء الاصطناعي؟</span>
+                            </button>
+
+                            <button type="button" class="quick-prompt" data-prompt="ساعدني في بناء خطة لتعلم برمجة الويب والذكاء الاصطناعي من الصفر">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                <span>خطة احتراف لتعلم البرمجة</span>
+                            </button>
+
+                            <button type="button" class="quick-prompt" data-prompt="صمم لي لوحة تحكم Dashboard حديثة بتصميم Glassmorphism">
+                                <i class="fa-solid fa-table-columns"></i>
+                                <span>كود لوحة تحكم Glassmorphism</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Floating Input Dock -->
+                <div class="input-area">
+                    <input type="file" id="fileInput" style="display: none;" multiple>
+
+                    <!-- Attachments -->
+                    <div class="attach-wrapper">
+                        <button id="attachBtn" class="attach-btn" type="button" title="إرفاق وخيارات إضافية" aria-label="خيارات إضافية">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <div id="attachDropdown" class="attach-dropdown">
+                            <div class="dropdown-item" id="optUpload" role="button" tabindex="0">
+                                <i class="fa-solid fa-paperclip"></i>
+                                <span>رفع ملف</span>
+                            </div>
+                            <div class="dropdown-item" id="optImage" role="button" tabindex="0">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>توليد صورة بالذكاء</span>
+                            </div>
+                            <div class="dropdown-item" id="optVideo" role="button" tabindex="0">
+                                <i class="fa-solid fa-video"></i>
+                                <span>توليد فيديو</span>
+                            </div>
+                            <div class="dropdown-item" id="optMusic" role="button" tabindex="0">
+                                <i class="fa-solid fa-music"></i>
+                                <span>توليد مقطع صوتي</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <textarea id="chatInput" rows="1" placeholder="اسأل Nova AI أي شيء أو اطلب كود..." autocomplete="off" spellcheck="true"></textarea>
+
+                    <!-- Action Buttons -->
+                    <div class="input-actions-right">
+                        <button id="micBtn" type="button" title="تحويل الصوت لنص" aria-label="تحويل الصوت لنص">
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+
+                        <button id="liveVoiceBtn" class="mic-btn live-btn" type="button" title="محادثة صوتية مباشرة" aria-label="محادثة صوتية مباشرة">
+                            <div class="wave-icon">
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </div>
+                        </button>
+
+                        <button id="sendChatBtn" type="button" title="إرسال" aria-label="إرسال الرسالة">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- =========================================================
+         SETTINGS MODAL
+    ========================================================== -->
+    <div id="settingsModal" class="settings-modal-overlay">
+        <div class="settings-modal-content">
+            <div class="settings-header">
+                <h3>الإعدادات</h3>
+                <button id="closeSettingsBtn" class="close-settings-btn" type="button" aria-label="إغلاق الإعدادات">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="settings-body">
+                <div class="setting-item" data-setting="language">
+                    <i class="fa-solid fa-language"></i>
+                    <span>اللغة (Language)</span>
+                    <i class="fa-solid fa-chevron-left arrow"></i>
+                </div>
+
+                <div class="setting-item" data-setting="subscriptions">
+                    <i class="fa-solid fa-crown"></i>
+                    <span>الباقات والاشتراكات</span>
+                    <i class="fa-solid fa-chevron-left arrow"></i>
+                </div>
+
+                <div class="setting-item" data-setting="public-links">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>روابط التواصل والمجتمع</span>
+                    <i class="fa-solid fa-chevron-left arrow"></i>
+                </div>
+
+                <!-- Custom API Key Support -->
+                <div style="background:rgba(255,255,255,0.035);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);margin-top:6px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                        <i class="fa-solid fa-key" style="color:var(--nova-cyan)"></i>
+                        <strong style="font-size:13.5px;">مفتاح Gemini API مخصص (اختياري)</strong>
+                    </div>
+                    <p style="font-size:12px;color:var(--nova-text-muted);margin-bottom:10px;">
+                        يمكنك إدخال مفتاح Google Gemini API الخاص بك لتشغيل الذكاء الاصطناعي مباشرة دون أي قيود.
+                    </p>
+                    <div style="display:flex;gap:8px;">
+                        <input id="customApiKeyInput" type="password" placeholder="AIzaSy..." style="flex:1;padding:10px 14px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:10px;font-size:13px;color:#fff;">
+                        <button id="saveApiKeyBtn" type="button" style="padding:10px 16px;background:var(--nova-primary-gradient);border-radius:10px;font-weight:700;font-size:13px;color:#fff;">حفظ</button>
+                    </div>
+                </div>
+
+                <!-- Smart Memory -->
+                <div class="settings-section memory-section" style="margin-top:14px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <i class="fa-solid fa-brain" style="color:var(--nova-violet);"></i>
+                            <strong style="font-size:13.5px;">ذاكرة Nova الذكية</strong>
+                        </div>
+                        <button id="clearMemoryBtn" type="button" style="font-size:12px;color:var(--nova-danger);background:rgba(239,68,68,0.1);padding:4px 10px;border-radius:6px;">
+                            <i class="fa-solid fa-trash"></i> مسح الذاكرة
+                        </button>
+                    </div>
+                    <p style="font-size:12px;color:var(--nova-text-muted);margin-bottom:10px;">المعلومات التي طلبت من Nova تذكرها أثناء المحادثات.</p>
+                    <div id="memoryList" class="memory-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         LANGUAGE MODAL
+    ========================================================== -->
+    <div id="languageModal" class="nova-language-modal">
+        <div class="nova-language-modal-content">
+            <div class="nova-language-header">
+                <div>
+                    <h3>🌐 لغة Nova AI</h3>
+                    <p>اختر اللغة المفضلة للواجهة والمحادثات</p>
+                </div>
+                <button id="closeLanguageModal" type="button" aria-label="إغلاق">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="nova-language-select-wrapper">
+                <select id="novaLanguageSelect">
+                    <option value="auto">🌍 Auto — اكتشاف تلقائي</option>
+                    <option value="ar-eg">🇪🇬 العربية المصرية</option>
+                    <option value="ar">🟢 العربية الفصحى</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                </select>
+            </div>
+
+            <button id="saveLanguageBtn" class="nova-save-language-btn" type="button">حفظ اللغة</button>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         SUBSCRIPTIONS MODAL
+    ========================================================== -->
+    <div id="novaSubscriptionsModal" class="nova-subscriptions-modal" aria-hidden="true">
+        <div class="nova-subscriptions-card" role="dialog" aria-modal="true">
+            <div class="nova-subscriptions-header">
+                <div>
+                    <h2 id="novaSubscriptionsTitle">باقات واشتراكات Nova AI</h2>
+                    <p style="color:var(--nova-text-muted);font-size:13.5px;margin-top:4px;">اختر الباقة المناسبة لاحتياجاتك واستفد من كامل إمكانيات الذكاء الاصطناعي</p>
+                </div>
+                <button type="button" id="closeSubscriptionsModal" class="nova-subscriptions-close" aria-label="إغلاق">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="nova-plans-grid">
+                <!-- FREE -->
+                <div class="nova-plan-card">
+                    <div class="nova-plan-badge">مجاني</div>
+                    <div class="nova-plan-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <h3>Free</h3>
+                    <p class="nova-plan-description">البداية المثالية لتجربة Nova AI</p>
+                    <div class="nova-plan-price"><strong>مجاني</strong></div>
+                    <ul class="nova-plan-features">
+                        <li>محادثات AI الأساسية</li>
+                        <li>حفظ سجل المحادثات</li>
+                        <li>استوديو تحرير الأكواد</li>
+                        <li>دعم نموذج Nova 2.0 Flash</li>
+                    </ul>
+                    <button type="button" class="nova-plan-button" data-plan="free">خطتك الحالية</button>
+                </div>
+
+                <!-- GO -->
+                <div class="nova-plan-card">
+                    <div class="nova-plan-badge" style="background:var(--nova-blue)">شائع</div>
+                    <div class="nova-plan-icon" style="color:var(--nova-blue)"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Go</h3>
+                    <p class="nova-plan-description">للمبرمجين والطلاب والمبدعين</p>
+                    <div class="nova-plan-price"><strong>$4.99</strong> / شهر</div>
+                    <ul class="nova-plan-features">
+                        <li>رسائل يومية غير محدودة</li>
+                        <li>توليد الأكواد المتقدمة</li>
+                        <li>توليد حتى 50 صورة يومياً</li>
+                        <li>سرعة استجابة فائقة</li>
+                    </ul>
+                    <button type="button" class="nova-plan-button" data-plan="go">ترقية إلى Go</button>
+                </div>
+
+                <!-- PRO -->
+                <div class="nova-plan-card featured">
+                    <div class="nova-plan-badge">الأكثر شعبية ✨</div>
+                    <div class="nova-plan-icon" style="color:var(--nova-violet)"><i class="fa-solid fa-crown"></i></div>
+                    <h3>Pro</h3>
+                    <p class="nova-plan-description">أقوى ذكاء للمشاريع الاحترافية</p>
+                    <div class="nova-plan-price"><strong>$9.99</strong> / شهر</div>
+                    <ul class="nova-plan-features">
+                        <li>وصول لنموذج Nova 2.0 Pro الخارق</li>
+                        <li>تحليل وتوليد ملفات ومشاريع كاملة</li>
+                        <li>توليد صور بجودة فائقة HD</li>
+                        <li>محادثات صوتية مباشرة غير محدودة</li>
+                    </ul>
+                    <button type="button" class="nova-plan-button" data-plan="pro">ترقية إلى Pro</button>
+                </div>
+
+                <!-- ULTRA -->
+                <div class="nova-plan-card">
+                    <div class="nova-plan-badge" style="background:linear-gradient(90deg, #ec4899, #f59e0b)">VIP</div>
+                    <div class="nova-plan-icon" style="color:var(--nova-pink)"><i class="fa-solid fa-gem"></i></div>
+                    <h3>Ultra</h3>
+                    <p class="nova-plan-description">للشركات والفرق ومطوري الـ SaaS</p>
+                    <div class="nova-plan-price"><strong>$19.99</strong> / شهر</div>
+                    <ul class="nova-plan-features">
+                        <li>كل ميزات Pro وأكثر</li>
+                        <li>أولوية قصوى على السيرفرات</li>
+                        <li>مفتاح API مخصص للاستخدام الخارجي</li>
+                        <li>دعم فني خاص 24/7</li>
+                    </ul>
+                    <button type="button" class="nova-plan-button" data-plan="ultra">ترقية إلى Ultra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         SOCIAL MODAL
+    ========================================================== -->
+    <div id="novaSocialModal" class="nova-social-modal">
+        <div class="nova-social-card">
+            <div class="modal-header">
+                <h3>مجتمع وروابط Nova AI</h3>
+                <button id="closeNovaSocialModal" class="modal-close-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;margin-top:14px;">
+                <a href="https://github.com" target="_blank" class="setting-item" style="text-decoration:none;">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub Repository</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
+                </a>
+                <a href="about.html" class="setting-item" style="text-decoration:none;">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>صفحة المطور ومعلومات Nova</span>
+                    <i class="fa-solid fa-chevron-left arrow"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         CORE APP SCRIPTS
+    ========================================================== -->
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+    <script src="profile.js"></script>
+
+    <!-- App Initialization & Modal Controllers -->
+    <script>
+    (function () {
+        "use strict";
+
+        // 1. Fast, Smooth Loading Screen Dissolve
+        const loadingScreen = document.getElementById("novaLoadingScreen");
+        function hideLoader() {
+            if (!loadingScreen) return;
+            loadingScreen.classList.add("loaded");
+            setTimeout(() => {
+                if (loadingScreen.parentNode) {
+                    loadingScreen.parentNode.removeChild(loadingScreen);
+                }
+            }, 350);
+        }
+        if (document.readyState === "complete") {
+            setTimeout(hideLoader, 200);
+        } else {
+            window.addEventListener("load", () => setTimeout(hideLoader, 200));
+            setTimeout(hideLoader, 1500); // safety fallback
+        }
+
+        // 2. Model Selector Dropdown
+        const modelBtn = document.getElementById("modelSelectorBtn");
+        const modelDropdown = document.getElementById("modelDropdown");
+        const selectedModelLabel = document.getElementById("selectedModelLabel");
+
+        if (modelBtn && modelDropdown) {
+            modelBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                modelDropdown.classList.toggle("show");
+            });
+
+            document.querySelectorAll(".model-option").forEach((option) => {
+                option.addEventListener("click", () => {
+                    document.querySelectorAll(".model-option").forEach(o => o.classList.remove("active"));
+                    option.classList.add("active");
+                    const modelName = option.querySelector("strong")?.textContent || "Nova 2.0 Flash";
+                    if (selectedModelLabel) selectedModelLabel.textContent = modelName;
+                    localStorage.setItem("novaSelectedModel", option.dataset.model || "nova-2.0-flash");
+                    modelDropdown.classList.remove("show");
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!modelDropdown.contains(e.target) && !modelBtn.contains(e.target)) {
+                    modelDropdown.classList.remove("show");
+                }
+            });
+        }
+
+        // 3. Settings Modal Handlers
+        const settingsBtn = document.getElementById("settingsBtn");
+        const profileSettingsBtn = document.getElementById("novaProfileSettings");
+        const settingsModal = document.getElementById("settingsModal");
+        const closeSettingsBtn = document.getElementById("closeSettingsBtn");
+
+        const openSettings = () => settingsModal?.classList.add("active");
+        const closeSettings = () => settingsModal?.classList.remove("active");
+
+        settingsBtn?.addEventListener("click", openSettings);
+        profileSettingsBtn?.addEventListener("click", openSettings);
+        closeSettingsBtn?.addEventListener("click", closeSettings);
+
+        // 4. Subscriptions Modal Handlers
+        const subBtn = document.getElementById("novaProfileSubscriptions");
+        const subModal = document.getElementById("novaSubscriptionsModal");
+        const closeSubBtn = document.getElementById("closeSubscriptionsModal");
+
+        subBtn?.addEventListener("click", () => subModal?.classList.add("active"));
+        closeSubBtn?.addEventListener("click", () => subModal?.classList.remove("active"));
+
+        document.querySelector('[data-setting="subscriptions"]')?.addEventListener("click", () => {
+            closeSettings();
+            subModal?.classList.add("active");
+        });
+
+        // 5. Language Modal Handlers
+        const langBtn = document.getElementById("novaProfileLanguage");
+        const langModal = document.getElementById("languageModal");
+        const closeLangBtn = document.getElementById("closeLanguageModal");
+        const saveLangBtn = document.getElementById("saveLanguageBtn");
+        const langSelect = document.getElementById("novaLanguageSelect");
+
+        langBtn?.addEventListener("click", () => langModal?.classList.add("active"));
+        closeLangBtn?.addEventListener("click", () => langModal?.classList.remove("active"));
+
+        document.querySelector('[data-setting="language"]')?.addEventListener("click", () => {
+            closeSettings();
+            langModal?.classList.add("active");
+        });
+
+        if (langSelect) {
+            langSelect.value = localStorage.getItem("novaLanguage") || "auto";
+        }
+
+        saveLangBtn?.addEventListener("click", () => {
+            const chosen = langSelect?.value || "auto";
+            localStorage.setItem("novaLanguage", chosen);
+            langModal?.classList.remove("active");
+            if (window.NovaI18n && typeof window.NovaI18n.setLanguage === "function") {
+                window.NovaI18n.setLanguage(chosen);
+            }
+        });
+
+        // 6. Social Modal Handlers
+        const socialModal = document.getElementById("novaSocialModal");
+        const closeSocialBtn = document.getElementById("closeNovaSocialModal");
+        document.querySelector('[data-setting="public-links"]')?.addEventListener("click", () => {
+            closeSettings();
+            socialModal?.classList.add("active");
+        });
+        closeSocialBtn?.addEventListener("click", () => socialModal?.classList.remove("active"));
+
+        // Close on escape or outside click
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                settingsModal?.classList.remove("active");
+                subModal?.classList.remove("active");
+                langModal?.classList.remove("active");
+                socialModal?.classList.remove("active");
+            }
+        });
+
+        [settingsModal, subModal, langModal, socialModal].forEach((modal) => {
+            modal?.addEventListener("click", (e) => {
+                if (e.target === modal) modal.classList.remove("active");
+            });
+        });
+
+        // 7. Custom API Key input
+        const customApiKeyInput = document.getElementById("customApiKeyInput");
+        const saveApiKeyBtn = document.getElementById("saveApiKeyBtn");
+        if (customApiKeyInput) {
+            customApiKeyInput.value = localStorage.getItem("novaCustomApiKey") || "";
+        }
+        saveApiKeyBtn?.addEventListener("click", () => {
+            const key = customApiKeyInput?.value.trim() || "";
+            localStorage.setItem("novaCustomApiKey", key);
+            saveApiKeyBtn.textContent = "تم الحفظ ✓";
+            setTimeout(() => { saveApiKeyBtn.textContent = "حفظ"; }, 1500);
+        });
+
+        // 8. Mobile Sidebar Toggle
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const sidebar = document.getElementById("sidebar");
+        mobileMenuBtn?.addEventListener("click", () => {
+            sidebar?.classList.toggle("mobile-open");
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =========================
+         Basic SEO
+    ========================== -->
+
+    <title>عن Nova AI | استوديو الذكاء الاصطناعي</title>
+
+    <meta name="description"
+        content="تعرف على Nova AI، استوديو ذكاء اصطناعي عربي يساعدك في البرمجة، الكتابة، التعلم، الإبداع، تحليل الصور والبحث عن المعلومات.">
+
+    <meta name="robots" content="index, follow">
+
+    <meta name="author">
+
+    <link rel="canonical" href="https://nova-ai-one-cyan.vercel.app/about.html">
+
+    <!-- =========================
+         Open Graph
+    ========================== -->
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:title" content="عن Nova AI | استوديو الذكاء الاصطناعي">
+
+    <meta property="og:description"
+        content="تعرف على Nova AI ومميزاتها في المحادثة الذكية، البرمجة، تحليل الصور، البحث والإبداع.">
+
+    <meta property="og:url" content="https://nova-ai-one-cyan.vercel.app/about.html">
+
+    <meta property="og:site_name" content="Nova AI">
+
+    <meta property="og:locale" content="ar_EG">
+
+    <meta property="og:image" content="https://i.postimg.cc/6Qzm7v1P/file-00000000205081f4830669209be96998.png">
+
+    <!-- =========================
+         Twitter / X
+    ========================== -->
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="عن Nova AI | استوديو الذكاء الاصطناعي">
+
+    <meta name="twitter:description"
+        content="تعرف على Nova AI ومميزاتها في الذكاء الاصطناعي والبرمجة والتعلم والإبداع.">
+
+    <meta name="twitter:image" content="https://i.postimg.cc/6Qzm7v1P/file-00000000205081f4830669209be96998.png">
+
+    <!-- =========================
+         Theme
+    ========================== -->
+
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- =========================
+         Favicon
+    ========================== -->
+
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/6Qzm7v1P/file-00000000205081f4830669209be96998.png">
+
+    <!-- =========================
+         Styles
+    ========================== -->
+
+    <style>
+        :root {
+            --bg: #05050b;
+            --panel: rgba(16, 16, 28, .72);
+            --line: rgba(255, 255, 255, .09);
+            --text: #f7f7fb;
+            --muted: #a7a7bb;
+            --p: #8b5cf6;
+            --c: #22d3ee
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Inter, Arial, "Segoe UI", sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at 15% 10%, rgba(139, 92, 246, .18), transparent 30%), radial-gradient(circle at 85% 20%, rgba(34, 211, 238, .12), transparent 28%), var(--bg);
+            line-height: 1.75;
+            min-height: 100vh;
+            overflow-x: hidden
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(to bottom, black, transparent 75%)
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: auto
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid var(--line);
+            background: rgba(5, 5, 11, .72);
+            backdrop-filter: blur(22px)
+        }
+
+        .nav {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 20px;
+            font-weight: 800
+        }
+
+        .brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 0 28px rgba(139, 92, 246, .35)
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .nav-links a {
+            padding: 9px 14px;
+            color: #bdbdcc;
+            font-size: 14px;
+            border-radius: 10px;
+            transition: .2s
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, .06)
+        }
+
+        .nav-links .nav-button {
+            color: #fff;
+            background: linear-gradient(135deg, var(--p), #6366f1);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, .25)
+        }
+
+        section {
+            padding: 82px 0
+        }
+
+        .hero {
+            text-align: center;
+            padding: 105px 0 80px;
+            position: relative
+        }
+
+        .hero:after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 220px;
+            background: rgba(139, 92, 246, .18);
+            filter: blur(90px);
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            z-index: -1
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            padding: 7px 14px;
+            border: 1px solid rgba(139, 92, 246, .35);
+            border-radius: 999px;
+            background: rgba(139, 92, 246, .08);
+            color: #d8c8ff;
+            font-size: 13px;
+            margin-bottom: 22px
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 22px
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #fff, var(--c), #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .hero>.container>p {
+            max-width: 720px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 18px
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap
+        }
+
+        .primary-button,
+        .secondary-button {
+            padding: 13px 22px;
+            border-radius: 13px;
+            font-weight: 700;
+            border: 1px solid var(--line);
+            transition: .2s
+        }
+
+        .primary-button {
+            background: linear-gradient(135deg, var(--p), #6366f1);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, .25)
+        }
+
+        .secondary-button {
+            background: rgba(255, 255, 255, .04)
+        }
+
+        .primary-button:hover,
+        .secondary-button:hover {
+            transform: translateY(-2px)
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            letter-spacing: -.7px
+        }
+
+        .section-title p {
+            color: var(--muted);
+            margin-top: 6px
+        }
+
+        .content-card,
+        .feature,
+        .cta {
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .018));
+            backdrop-filter: blur(18px);
+            border-radius: 22px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, .22)
+        }
+
+        .content-card {
+            padding: 32px
+        }
+
+        .content-card p+p {
+            margin-top: 14px
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .feature {
+            padding: 25px;
+            transition: .25s
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, .35);
+            box-shadow: 0 25px 70px rgba(124, 58, 237, .12)
+        }
+
+        .feature-icon {
+            font-size: 26px;
+            width: 50px;
+            height: 50px;
+            display: grid;
+            place-items: center;
+            border-radius: 15px;
+            background: rgba(139, 92, 246, .12);
+            margin-bottom: 18px
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 7px
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: var(--muted)
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px
+        }
+
+        .tech {
+            padding: 8px 13px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .035);
+            color: #d8d8e7;
+            font-size: 13px
+        }
+
+        .developer {
+            text-align: center
+        }
+
+        .developer-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 8px 0 12px;
+            background: linear-gradient(90deg, var(--c), #a78bfa);
+            -webkit-background-clip: text;
+            color: transparent
+        }
+
+        .cta {
+            text-align: center;
+            padding: 55px 25px;
+            background: radial-gradient(circle at 50% 0, rgba(139, 92, 246, .18), transparent 55%), rgba(255, 255, 255, .025)
+        }
+
+        .cta h2 {
+            font-size: 34px
+        }
+
+        .cta p {
+            color: var(--muted);
+            margin: 7px 0 22px
+        }
+
+        footer {
+            padding: 30px 0 45px;
+            text-align: center;
+            color: #77778b;
+            font-size: 13px
+        }
+
+        @media(max-width:760px) {
+            .nav {
+                height: 68px
+            }
+
+            .nav-links a:not(.nav-button) {
+                display: none
+            }
+
+            .hero {
+                padding: 80px 0 60px
+            }
+
+            .hero h1 {
+                letter-spacing: -1px
+            }
+
+            .hero>.container>p {
+                font-size: 16px
+            }
+
+            .features {
+                grid-template-columns: 1fr
+            }
+
+            .content-card {
+                padding: 23px
+            }
+
+            section {
+                padding: 60px 0
+            }
+
+            .section-title h2 {
+                font-size: 27px
+            }
+        }
+    </style>
+
+    <!-- =========================
+         Structured Data
+         WebApplication
+    ========================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "@id": "https://nova-ai-one-cyan.vercel.app/#application",
+        "name": "Nova AI",
+        "url": "https://nova-ai-one-cyan.vercel.app/",
+        "description": "Nova AI هو استوديو ذكاء اصطناعي عربي يساعد في البرمجة والكتابة والتعلم والإبداع وتحليل الصور والبحث عن المعلومات.",
+        "image": "https://i.postimg.cc/6Qzm7v1P/file-00000000205081f4830669209be96998.png",
+        "inLanguage": "ar",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript"
+    }
+    </script>
+
+    <!-- =========================
+         Structured Data
+         AboutPage
+    ========================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "@id": "https://nova-ai-one-cyan.vercel.app/about.html#about",
+        "url": "https://nova-ai-one-cyan.vercel.app/about.html",
+        "name": "عن Nova AI",
+        "description": "صفحة تعريفية عن Nova AI ومميزاتها ومجالات استخدامها.",
+        "inLanguage": "ar",
+        "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://nova-ai-one-cyan.vercel.app/#website",
+            "name": "Nova AI",
+            "url": "https://nova-ai-one-cyan.vercel.app/"
+        },
+        "about": {
+            "@id": "https://nova-ai-one-cyan.vercel.app/#application"
+        }
+    }
+    </script>
+
+    <!-- =========================
+         Structured Data
+         Organization
+    ========================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://nova-ai-one-cyan.vercel.app/#organization",
+        "name": "Nova AI",
+        "url": "https://nova-ai-one-cyan.vercel.app/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://i.postimg.cc/6Qzm7v1P/file-00000000205081f4830669209be96998.png"
+        },
+        "description": "Nova AI هو استوديو ذكاء اصطناعي يساعد في البرمجة والكتابة والتعلم والإبداع وتحليل الصور والبحث عن المعلومات."
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         Header
+    ========================== -->
+
+    <header>
+
+        <div class="container nav">
+
+            <a href="index.html" class="brand" aria-label="Nova AI">
+
+                <img src="https://i.postimg.cc/6Qzm7v1P/file-00000000205081f4830669209be96998.png" alt="شعار Nova AI">
+
+                <span>Nova AI</span>
+
+            </a>
+
+            <nav class="nav-links" aria-label="التنقل">
+
+                <a href="index.html">
+                    الرئيسية
+                </a>
+
+                <a href="#features">
+                    المميزات
+                </a>
+
+                <a href="#technology">
+                    التقنية
+                </a>
+
+                <a href="index.html" class="nav-button">
+                    ابدأ الآن
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             Hero
+        ========================== -->
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-badge">
+                    ✦ استوديو ذكاء اصطناعي عربي
+                </div>
+
+                <h1>
+                    تعرف على
+                    <span>Nova AI</span>
+                </h1>
+
+                <p>
+                    Nova AI هو استوديو ذكاء اصطناعي مصمم
+                    لمساعدتك في البرمجة والكتابة والتعلم
+                    والإبداع وتحليل الصور والبحث عن المعلومات.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="index.html" class="primary-button">
+                        ابدأ استخدام Nova AI
+                    </a>
+
+                    <a href="#features" class="secondary-button">
+                        اكتشف المميزات
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             About
+        ========================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        ما هي Nova AI؟
+                    </h2>
+
+                    <p>
+                        منصة واحدة لمجموعة من مهام الذكاء الاصطناعي.
+                    </p>
+
+                </div>
+
+                <div class="content-card">
+
+                    <p>
+                        Nova AI هي منصة ويب للذكاء الاصطناعي
+                        تهدف إلى توفير تجربة بسيطة ومباشرة
+                        للتعامل مع الذكاء الاصطناعي من خلال
+                        المحادثة والتعلم والبرمجة والإبداع.
+                    </p>
+
+                    <p>
+                        يمكن استخدام Nova AI للحصول على
+                        المساعدة في كتابة الأكواد، فهم
+                        المفاهيم، إنشاء الأفكار والنصوص،
+                        تحليل الصور، والبحث عن المعلومات
+                        الحديثة عند الحاجة.
+                    </p>
+
+                    <p>
+                        تم تصميم Nova AI لتكون مساحة واحدة
+                        تجمع أدوات الذكاء الاصطناعي المختلفة
+                        في واجهة ويب سهلة الاستخدام.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Features
+        ========================== -->
+
+        <section id="features">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        ماذا تقدم Nova AI؟
+                    </h2>
+
+                    <p>
+                        مجموعة من الأدوات لمساعدتك في العمل والتعلم والإبداع.
+                    </p>
+
+                </div>
+
+
+                <div class="features">
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            💬
+                        </div>
+
+                        <h3>
+                            المحادثة الذكية
+                        </h3>
+
+                        <p>
+                            تحدث مع Nova AI واحصل على إجابات
+                            ومساعدة في مجموعة واسعة من المجالات.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            💻
+                        </div>
+
+                        <h3>
+                            البرمجة
+                        </h3>
+
+                        <p>
+                            مساعدة في كتابة الأكواد وشرحها
+                            وتصحيح المشاكل البرمجية.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🧠
+                        </div>
+
+                        <h3>
+                            التعلم
+                        </h3>
+
+                        <p>
+                            شرح المفاهيم والمعلومات بطريقة
+                            منظمة ومناسبة للتعلم.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🖼️
+                        </div>
+
+                        <h3>
+                            تحليل الصور
+                        </h3>
+
+                        <p>
+                            إمكانية إرسال الصور إلى Nova AI
+                            لتحليل محتواها وفهمها.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🌐
+                        </div>
+
+                        <h3>
+                            البحث على الإنترنت
+                        </h3>
+
+                        <p>
+                            الوصول إلى معلومات حديثة عند الحاجة
+                            باستخدام البحث على الإنترنت.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            ✨
+                        </div>
+
+                        <h3>
+                            الإبداع
+                        </h3>
+
+                        <p>
+                            المساعدة في كتابة المحتوى وتوليد
+                            الأفكار والمشروعات الإبداعية.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Technology
+        ========================== -->
+
+        <section id="technology">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        التقنية
+                    </h2>
+
+                    <p>
+                        Nova AI تعتمد على تقنيات الويب والذكاء الاصطناعي الحديثة.
+                    </p>
+
+                </div>
+
+                <div class="content-card">
+
+                    <p>
+                        تعمل Nova AI كتطبيق ويب وتستخدم تقنيات
+                        الويب الحديثة لبناء واجهة تفاعلية،
+                        مع نماذج ذكاء اصطناعي من Google لتوفير
+                        قدرات المحادثة والفهم وتحليل المحتوى.
+                    </p>
+
+                    <div class="tech-list">
+
+                        <span class="tech">
+                            HTML
+                        </span>
+
+                        <span class="tech">
+                            CSS
+                        </span>
+
+                        <span class="tech">
+                            JavaScript
+                        </span>
+
+                        <span class="tech">
+                            Gemini
+                        </span>
+
+                        <span class="tech">
+                            Vercel
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Developer
+        ========================== -->
+
+
+
+        <!-- =========================
+             CTA
+        ========================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="cta">
+
+                    <h2>
+                        جرّب Nova AI
+                    </h2>
+
+                    <p>
+                        ابدأ محادثتك واكتشف إمكانيات Nova AI.
+                    </p>
+
+                    <a href="index.html" class="primary-button">
+                        افتح Nova AI
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026 Nova AI — جميع الحقوق محفوظة.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

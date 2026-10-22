@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - Nova AI Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background:
+                radial-gradient(900px 600px at 70% 10%, rgba(139, 92, 246, 0.18), transparent 60%),
+                radial-gradient(800px 600px at 20% 90%, rgba(34, 211, 238, 0.12), transparent 55%),
+                #070813;
+            color: #f8fafc;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .login-card {
+            background: rgba(14, 17, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 36px 32px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55), inset 0 1px rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+
+        .logo {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            color: #ffffff;
+            font-size: 32px;
+            box-shadow: 0 12px 36px rgba(139, 92, 246, 0.35);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap i {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            pointer-events: none;
+            font-size: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 46px 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            background: rgba(8, 10, 19, 0.7);
+            color: white;
+            outline: none;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+            background: rgba(12, 15, 28, 0.9);
+        }
+
+        .main-btn {
+            width: 100%;
+            border: 0;
+            padding: 14px;
+            border-radius: 14px;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #ffffff;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .main-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4);
+            background: linear-gradient(135deg, #9a6dff, #6d70ff);
+        }
+
+        .main-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .guest-btn {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 14px;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #cbd5e1;
+            background: rgba(255, 255, 255, 0.04);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .guest-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .divider span {
+            padding: 0 12px;
+        }
+
+        .switch {
+            text-align: center;
+            margin-top: 22px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .switch a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .switch a:hover {
+            color: #22d3ee;
+            text-decoration: underline;
+        }
+
+        .message {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            display: none;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-container">
+        <section class="login-card">
+            <div class="logo">
+                <i class="fa-solid fa-sparkles"></i>
+            </div>
+
+            <h1>أهلاً بك في Nova AI 👋</h1>
+            <p class="subtitle">سجّل دخولك للمزامنة وحفظ المحادثات والمشاريع</p>
+
+            <form id="loginForm">
+                <div class="field">
+                    <label for="email">البريد الإلكتروني</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input id="email" type="email" placeholder="example@email.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="password">كلمة المرور</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock"></i>
+                        <input id="password" type="password" placeholder="••••••••" required autocomplete="current-password">
+                    </div>
+                </div>
+
+                <button type="submit" class="main-btn" id="loginBtn">
+                    تسجيل الدخول
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>أو</span>
+            </div>
+
+            <button type="button" class="guest-btn" id="guestBtn">
+                <i class="fa-solid fa-rocket"></i>
+                المتابعة كضيف (استكشاف Nova AI)
+            </button>
+
+            <div class="message" id="message"></div>
+
+            <div class="switch">
+                ليس لديك حساب؟
+                <a href="signup.html">إنشاء حساب جديد</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Nova Supabase Config -->
+    <script src="supabase.js"></script>
+    <!-- Login Logic -->
+    <script src="login.js"></script>
+</body>
+
+</html>
